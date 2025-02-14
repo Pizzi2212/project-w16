@@ -26,13 +26,20 @@ public class DipendenteController {
     }
 
     @PostMapping
-    public Dipendente saveDipendente(Dipendente dipendente) {
+    public Dipendente createDipendente(@RequestBody DipendenteRequest dipendenteRequest) {
+        Dipendente dipendente = new Dipendente();
+        dipendente.setUsername(dipendenteRequest.getUsername());
+        dipendente.setNome(dipendenteRequest.getNome());
+        dipendente.setCognome(dipendenteRequest.getCognome());
+        dipendente.setEmail(dipendenteRequest.getEmail());
+        dipendente.setImmagineProfilo(dipendenteRequest.getImmagineProfilo());
+
         return dipendenteService.saveDipendente(dipendente);
     }
 
     @PutMapping("/{id}")
-    public Dipendente modifyDipendente(@PathVariable Long id, @RequestBody DipendenteRequest request) {
-        return dipendenteService.saveDipendente(request);
+    public Dipendente updateDipendente(@PathVariable Long id, @RequestBody Dipendente dipendente) {
+        return dipendenteService.saveDipendente(dipendente);
     }
 
     @DeleteMapping("/{id}")

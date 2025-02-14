@@ -1,39 +1,12 @@
 package com.example.project_w16.prenotazione;
 
-
-import com.example.project_w16.dipendente.Dipendente;
-import com.example.project_w16.viaggio.Viaggio;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-
-@Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class PrenotazioneRequest {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotBlank(message = "Il campo data richiesta non puo essere vuoto")
+class PrenotazioneRequest {
+    private Long viaggioId;
+    private Long dipendenteId;
     private String dataRichiesta;
-    @NotBlank(message = "Il campo note non puo essere vuoto")
     private String note;
-
-
-    @NotBlank (message = "Il campo viaggio non puo essere vuoto")
-    private Viaggio viaggio;
-
-    @NotBlank (message = "Il campo dipendente non puo essere vuoto")
-    private Dipendente dipendente;
-
-
 }
+

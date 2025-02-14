@@ -21,8 +21,8 @@ public class PrenotazioneController {
         return prenotazioneService.getAllPrenotazioni(pageable);
     }
     @PostMapping
-    public Prenotazione savePrenotazione(Prenotazione prenotazione) {
-        return prenotazioneService.savePrenotazione(prenotazione);
+    public Prenotazione createPrenotazione(@RequestBody PrenotazioneRequest prenotazioneRequest) {
+        return prenotazioneService.savePrenotazione(prenotazioneRequest);
     }
 
    @DeleteMapping("/{id}")

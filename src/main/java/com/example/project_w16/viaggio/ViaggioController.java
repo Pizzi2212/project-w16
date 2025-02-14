@@ -21,13 +21,14 @@ public class ViaggioController {
     }
 
     @PostMapping
-    public Viaggio saveViaggio(Viaggio viaggio) {
-        return viaggioService.saveViaggio(viaggio);
+    public Viaggio createViaggio(@RequestBody ViaggioRequest viaggioRequest) {
+        return viaggioService.saveViaggio(viaggioRequest);
     }
 
     @PutMapping("/{id}")
-    public Viaggio modifyViaggio(@PathVariable Long id, @RequestBody ViaggioRequest request) {
-        return viaggioService.saveViaggio(request);
+    public Viaggio updateViaggio(@PathVariable Long id, @RequestBody Viaggio viaggio) {
+        viaggio.setId(id);
+        return viaggioService.saveViaggio(viaggio);
     }
 
     @DeleteMapping("/{id}")

@@ -1,0 +1,42 @@
+package com.example.project_w16.viaggio;
+
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/viaggi")
+@RequiredArgsConstructor
+public class ViaggioController {
+
+    @Autowired
+    private final ViaggioService viaggioService;
+
+    @GetMapping
+    public Page<Viaggio> getAllViaggi(Pageable pageable) {
+        return viaggioService.getAllViaggi(pageable);
+    }
+
+    @PostMapping
+    public Viaggio saveViaggio(Viaggio viaggio) {
+        return viaggioService.saveViaggio(viaggio);
+    }
+
+    @PutMapping("/{id}")
+    public Viaggio modifyViaggio(@PathVariable Long id, @RequestBody ViaggioRequest request) {
+        return viaggioService.saveViaggio(request);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteViaggio(@PathVariable Long id) {
+        viaggioService.deleteViaggio(id);
+    }
+
+    @PutMapping("/{id}/stato")
+    public Viaggio updateStatoViaggio(@PathVariable Long id, @RequestParam String stato) {
+        return viaggioService.updateStatoViaggio(id, stato);
+    }
+}
